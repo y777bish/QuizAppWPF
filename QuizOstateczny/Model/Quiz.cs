@@ -1,6 +1,6 @@
 namespace QuizOstateczny.Model
 {
-    class Quiz
+    public class Quiz
     {
         public int Id { get; set; }
 
