@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace QuizOstateczny.View
 {
     /// <summary>
-    /// Logika interakcji dla klasy MainMenu.xaml
+    /// Logika interakcji dla klasy MainMenuView.xaml
     /// </summary>
-    public partial class MainMenu : Page
+    public partial class MainMenuView : Window
     {
-        public MainMenu()
+        public MainMenuView()
         {
             InitializeComponent();
         }
