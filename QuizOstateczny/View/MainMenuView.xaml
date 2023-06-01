@@ -8,6 +8,9 @@
         Title="MainMenuView" Height="450" Width="800">
 
     <Grid>
-        
+        <Button Content="Dodaj Quiz" HorizontalAlignment="Left" Margin="175,217,0,0" VerticalAlignment="Top" Height="77" Width="177"/>
+        <Button Content="Rozwiąż Quiz" HorizontalAlignment="Left" Margin="471,217,0,0" VerticalAlignment="Top" Height="77" Width="177"/>
+        <Label Content="QuizApp" HorizontalAlignment="Center" Margin="0,52,0,0" VerticalAlignment="Top" FontSize="48" FontWeight="Bold" FontStyle="Italic"/>
+
     </Grid>
 </Window>
