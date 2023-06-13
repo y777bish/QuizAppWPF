@@ -13,8 +13,8 @@
     </Window.DataContext>
 
     <Grid>
-        <Button Content="Dodaj Quiz" HorizontalAlignment="Left" Margin="175,217,0,0" VerticalAlignment="Top" Height="77" Width="177" Command="{Binding NavigateCommand}"/>
-        <Button Content="Rozwiąż Quiz" HorizontalAlignment="Left" Margin="471,217,0,0" VerticalAlignment="Top" Height="77" Width="177"/>
+        <Button Content="Dodaj Quiz" HorizontalAlignment="Left" Margin="175,217,0,0" VerticalAlignment="Top" Height="77" Width="177" Command="{Binding miejsceNaKomende}"/>
+        <Button Content="Rozwiąż Quiz" HorizontalAlignment="Left" Margin="471,217,0,0" VerticalAlignment="Top" Height="77" Width="177" Command="{Binding miejsceNaKomende}"/>
         <Label Content="QuizApp" HorizontalAlignment="Center" Margin="0,52,0,0" VerticalAlignment="Top" FontSize="48" FontWeight="Bold" FontStyle="Italic"/>
 
     </Grid>
