@@ -39,7 +39,7 @@ namespace QuizOstateczny.ViewModel
 
         public void Execute(object? parameter)
         {
-            execute(parameter);
+            execute?.Invoke(parameter);
         }
     }
 }

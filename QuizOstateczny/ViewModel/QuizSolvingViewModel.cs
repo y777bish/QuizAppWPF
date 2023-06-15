@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace QuizOstateczny.ViewModel
 {
-    internal interface INavigationService
+    public class QuizSolvingViewModel
     {
-        void NavigateTo(string viewName);
+
     }
 }

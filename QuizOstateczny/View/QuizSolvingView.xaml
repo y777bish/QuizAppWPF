@@ -1,0 +1,27 @@
+﻿<Window x:Class="QuizOstateczny.View.QuizSolvingView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuizOstateczny.View"
+        xmlns:vm="clr-namespace:QuizOstateczny.ViewModel"
+        mc:Ignorable="d"
+        Title="QuizSolvingView" Height="450" Width="800">
+
+    <Window.DataContext>
+        <vm:ViewModel x:Name="quizSolvingViewModel"/>
+    </Window.DataContext>
+
+    <Grid>
+        <Button Content="Odp1" HorizontalAlignment="Left" Margin="164,0,0,0" VerticalAlignment="Center" Height="101" Width="221"/>
+        <Button Content="Odp2" HorizontalAlignment="Left" Margin="409,0,0,0" VerticalAlignment="Center" Height="101" Width="221"/>
+        <Button Content="Odp3" HorizontalAlignment="Left" Margin="164,305,0,0" VerticalAlignment="Top" Height="104" Width="221"/>
+        <Button Content="Odp4" HorizontalAlignment="Left" Margin="409,305,0,0" VerticalAlignment="Top" Height="104" Width="221"/>
+        <Label Content="Pytanie:" HorizontalAlignment="Left" Margin="64,72,0,0" VerticalAlignment="Top" Width="95" Height="48"/>
+        <Label Content="Timer" HorizontalAlignment="Left" Margin="652,23,0,0" VerticalAlignment="Top" Height="59" Width="111"/>
+        <TextBox HorizontalAlignment="Left" Margin="164,70,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="466" Height="50"/>
+        <Label Content="Nazwa testu:" HorizontalAlignment="Left" Margin="64,23,0,0" VerticalAlignment="Top" Width="85"/>
+        <TextBox HorizontalAlignment="Left" Margin="164,23,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="466" Height="34"/>
+
+    </Grid>
+</Window>

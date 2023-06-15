@@ -5,18 +5,19 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using QuizOstateczny.ViewModel;
 
 namespace QuizOstateczny.ViewModel
 {
-    public abstract class MainViewModel : INotifyPropertyChanged
+    public abstract class MainMenuViewModel : INotifyPropertyChanged
     {
         public ICommand NavigateCommand { get; private set; }
-
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public MainViewModel()
+        public MainMenuViewModel()
         {
             /*NavigateCommand = new RelayCommand<string>(Navigate);*/
         }
@@ -26,11 +27,11 @@ namespace QuizOstateczny.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void Navigate(string viewName)
+        /*private void Navigate(string viewName)
         {
             // Wywołaj odpowiednią metodę nawigacji w zależności od wartości viewName
             System.Windows.MessageBox.Show($"Wywołano polecenie z parametrem");
-        }
+        }*/
     }
 
 }
