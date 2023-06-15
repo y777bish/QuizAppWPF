@@ -14,11 +14,9 @@ namespace QuizOstateczny.Model
 
         public string Odp_4 { get; set; }
 
-        public int Poprawna_odp { get; set; }
+        public string Poprawna_odp { get; set; }
 
-        public int Nr_zadania { get; set; }
-
-        public string Quiz { get; set; }
+        public int Quiz { get; set; }
 
     }
 }

@@ -1,11 +1,12 @@
 ﻿using static System.Net.Mime.MediaTypeNames;
 using System.Windows.Input;
+using System;
 
 namespace QuizOstateczny.Model
 {
     class Szyfrowanko
     {
-        public string Szyfrowanie(string text, string key)
+        public static string Szyfrowanie(string text, string key)
         {
             string encryptedText = "";
             int textLength = text.Length;
@@ -43,7 +44,7 @@ namespace QuizOstateczny.Model
             return encryptedText;
         }
 
-        public string Odszyfrowanie(string encryptedText, string key)
+        public static string Odszyfrowanie(string encryptedText, string key)
         {
             string decryptedText = "";
             int encryptedTextLength = encryptedText.Length;
@@ -79,6 +80,51 @@ namespace QuizOstateczny.Model
             }
 
             return decryptedText;
+        }
+        
+        public static string SzyfrNumer(int numer)
+        {
+            char Ascii = (char)5;
+            switch (numer)
+            {
+                case 1:
+                    Ascii = (char)1;
+                    break;
+                case 2:
+                    Ascii = (char)2;
+                    break;
+                case 3:
+                    Ascii = (char)3;
+                    break;
+                case 4:
+                    Ascii = (char)4;
+                    break;
+            }
+            return Ascii.ToString();
+        }
+
+        public static int DeszyfrNumer(string asciiString)
+        {
+            char asciiChar = asciiString[0];
+            int numer = 0;
+
+            switch (asciiChar)
+            {
+                case (char)1:
+                    numer = 1;
+                    break;
+                case (char)2:
+                    numer = 2;
+                    break;
+                case (char)3:
+                    numer = 3;
+                    break;
+                case (char)4:
+                    numer = 4;
+                    break;
+            }
+
+            return numer;
         }
     }
 }

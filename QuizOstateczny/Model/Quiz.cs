@@ -6,5 +6,7 @@ namespace QuizOstateczny.Model
 
         public string Name { get; set; }
 
+        public int Czas { get; set; }
+
     }
 }

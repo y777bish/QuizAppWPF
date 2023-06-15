@@ -6,11 +6,15 @@
         xmlns:local="clr-namespace:QuizOstateczny"
         xmlns:vm="clr-namespace:QuizOstateczny.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Dodawanie Quizów" Height="450" Width="800">
 
     <Window.DataContext>
         <vm:ViewModel x:Name="viewModel"/>
     </Window.DataContext>
+
+    <Window.Resources>
+        <local:SzyfrowanieConverter x:Key="SzyfrowanieConverter" />
+    </Window.Resources>
 
     <Grid>
         <TextBox HorizontalAlignment="Left" Margin="549,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Pytanie}"/>
@@ -20,27 +24,32 @@
         <TextBox HorizontalAlignment="Left" Margin="549,273,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Odp4}"/>
         <TextBox HorizontalAlignment="Left" Margin="279,162,0,0" TextWrapping="Wrap" Text="{Binding QuizTime}" VerticalAlignment="Top" Width="120"/>
         <ComboBox HorizontalAlignment="Left" Margin="43,99,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding QuizList}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedQuiz}"/>
-        <Label Content="Czas testu (sekundy):" HorizontalAlignment="Left" Margin="279,131,0,0" VerticalAlignment="Top"/>
-        <Label Content="Wybierz test:" HorizontalAlignment="Left" Margin="43,72,0,0" VerticalAlignment="Top"/>
+        <Label Content="Czas quizu (sekundy):" HorizontalAlignment="Left" Margin="279,131,0,0" VerticalAlignment="Top"/>
+        <Label Content="Wybierz quiz:" HorizontalAlignment="Left" Margin="43,72,0,0" VerticalAlignment="Top"/>
         <Label Content="Pytanie:" HorizontalAlignment="Left" Margin="493,123,0,0" VerticalAlignment="Top"/>
         <Label Content="Odpowiedź 1:" HorizontalAlignment="Left" Margin="461,167,0,0" VerticalAlignment="Top"/>
         <Label Content="Odpowiedź 2:" HorizontalAlignment="Left" Margin="461,202,0,0" VerticalAlignment="Top"/>
         <Label Content="Odpowiedź 3:" HorizontalAlignment="Left" Margin="461,237,0,0" VerticalAlignment="Top"/>
         <Label Content="Odpowiedź 4:" HorizontalAlignment="Left" Margin="461,269,0,0" VerticalAlignment="Top"/>
-        <Label Content="(prawidłowa)" HorizontalAlignment="Left" Margin="674,167,0,0" VerticalAlignment="Top"/>
+        <Label Content="Prawidłowa:" HorizontalAlignment="Left" Margin="703,166,0,0" VerticalAlignment="Top"/>
         <Label Content="Quizy" HorizontalAlignment="Left" Margin="43,25,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
-        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="549,328,0,0" VerticalAlignment="Top" Command="{Binding DodajQuest}"/>
-        <Button Content="Usuń" HorizontalAlignment="Left" Margin="638,328,0,0" VerticalAlignment="Top" />
+        <Button Content="Dodaj nowe" HorizontalAlignment="Left" Margin="519,303,0,0" VerticalAlignment="Top" Command="{Binding DodajQuest}" Width="98"/>
+        <Button Content="Usuń" HorizontalAlignment="Left" Margin="653,323,0,0" VerticalAlignment="Top" Command="{Binding UsunQuest}"/>
         <ListBox ItemsSource="{Binding QuestList}" Margin="43,200,380,25" SelectedItem="{Binding SelectedQuest}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Tresc}" />
+                    <TextBlock Text="{Binding Tresc, Converter={StaticResource SzyfrowanieConverter}}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Content="Nowy test" HorizontalAlignment="Left" Margin="168,159,0,0" VerticalAlignment="Top" Command="{Binding DodajQuiz}"/>
+        <Button Content="Nowy quiz" HorizontalAlignment="Left" Margin="168,169,0,0" VerticalAlignment="Top" Command="{Binding DodajQuiz}" Width="86"/>
         <TextBox HorizontalAlignment="Left" Margin="43,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding QuizName}"/>
         <Label Content="Nazwa quizu:" HorizontalAlignment="Left" Margin="43,139,0,0" VerticalAlignment="Top"/>
+        <Button Content="Usuń quiz" HorizontalAlignment="Left" Margin="425,389,0,0" VerticalAlignment="Top" Command="{Binding UsunQuiz}"/>
+        <Button Content="wyczyść bazę danych" HorizontalAlignment="Left" Margin="653,389,0,0" VerticalAlignment="Top" Height="25" Width="137" Background="#FF9E0000" Foreground="White" Command="{Binding Exterminacja}"/>
+        <Button Content="Aktualizuj pytanie" HorizontalAlignment="Left" Margin="519,333,0,0" VerticalAlignment="Top" Command="{Binding AktualizujQuest}"/>
+        <Button Content="Aktualizuj quiz" HorizontalAlignment="Left" Margin="168,142,0,0" VerticalAlignment="Top" Width="86" Command="{Binding AktualizujQuiz}"/>
+        <ComboBox HorizontalAlignment="Left" Margin="713,192,0,0" VerticalAlignment="Top" Width="54" Height="20" ItemsSource="{Binding ListaLiczb}" SelectedItem="{Binding SelectedNumber}"/>
 
     </Grid>
 </Window>

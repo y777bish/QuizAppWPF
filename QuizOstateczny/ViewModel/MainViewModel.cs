@@ -10,7 +10,7 @@ using QuizOstateczny.ViewModel;
 
 namespace QuizOstateczny.ViewModel
 {
-    public abstract class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : INotifyPropertyChanged
     {
         public ICommand NavigateCommand { get; private set; }
 
