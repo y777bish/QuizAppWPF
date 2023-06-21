@@ -1,10 +1,15 @@
 ﻿using QuizOstateczny.Model;
 using SQLite;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 using System.Windows.Media.Animation;
 
+/*namespace QuizOstateczny.Model
+{
+
+}*/
 public class QuestDatabaseConnection
 {
     private SQLiteConnection connection;
