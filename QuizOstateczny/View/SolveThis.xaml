@@ -12,7 +12,8 @@
     <Page.DataContext>
         <vm:SolveThisViewModel x:Name="solveThisViewModel"/>
     </Page.DataContext>
-    
+
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -25,21 +26,21 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Content="Pytanie" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="24" FontWeight="Bold" Grid.ColumnSpan="2" Height="42" Width="117"/>
-        <Label Content="{Binding Pytanie_2, Mode=OneWay}" FontSize="24" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Label Content="{Binding Pytanie_3, Mode=OneWay}" FontSize="24" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <StackPanel Grid.Row="2">
-            <CheckBox Width="360" Height="44" Command="{Binding Check}" Margin="30,10,0,0" VerticalAlignment="Top" IsChecked="{Binding Odp1_2.IsChoosen, Mode=TwoWay}">
-                <TextBlock Text="{Binding Odp1_2, Mode=OneWay}" TextWrapping="Wrap"/>
+            <CheckBox Width="360" Height="44" Command="{Binding Check}" Margin="30,10,0,0" VerticalAlignment="Top" IsChecked="{Binding Odp1_3.IsChoosen, Mode=TwoWay}">
+                <TextBlock Text="{Binding Odp1_3, Mode=OneWay}" TextWrapping="Wrap"/>
             </CheckBox>
-            <CheckBox Width="360" Height="44" Command="{Binding Check}" Margin="30,10,0,0" VerticalAlignment="Bottom" IsChecked="{Binding Odp3_2.IsChoosen, Mode=TwoWay}">
-                <TextBlock Text="{Binding Odp3_2, Mode=OneWay}" TextWrapping="Wrap"/>
+            <CheckBox Width="360" Height="44" Command="{Binding Check}" Margin="30,10,0,0" VerticalAlignment="Bottom" IsChecked="{Binding Odp3_3.IsChoosen, Mode=TwoWay}">
+                <TextBlock Text="{Binding Odp3_3, Mode=OneWay}" TextWrapping="Wrap"/>
             </CheckBox>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="2">
-            <CheckBox Width="360" Command="{Binding Check}" Height="44" Margin="30,10,0,0" VerticalAlignment="Top" IsChecked="{Binding Odp2_2.IsChoosen, Mode=TwoWay}">
-                <TextBlock Text="{Binding Odp2_2, Mode=OneWay}" TextWrapping="Wrap"/>
+            <CheckBox Width="360" Command="{Binding Check}" Height="44" Margin="30,10,0,0" VerticalAlignment="Top" IsChecked="{Binding Odp2_3.IsChoosen, Mode=TwoWay}">
+                <TextBlock Text="{Binding Odp2_3, Mode=OneWay}" TextWrapping="Wrap"/>
             </CheckBox>
-            <CheckBox Width="360" Command="{Binding Check}" Height="44" Margin="30,10,0,0" VerticalAlignment="Bottom" IsChecked="{Binding Odp4_2.IsChoosen, Mode=TwoWay}">
-                <TextBlock Text="{Binding Odp4_2, Mode=OneWay}" TextWrapping="Wrap"/>
+            <CheckBox Width="360" Command="{Binding Check}" Height="44" Margin="30,10,0,0" VerticalAlignment="Bottom" IsChecked="{Binding Odp4_3.IsChoosen, Mode=TwoWay}">
+                <TextBlock Text="{Binding Odp4_3, Mode=OneWay}" TextWrapping="Wrap"/>
             </CheckBox>
         </StackPanel>
         <Button Content="Poprzednie pytanie" Command="{Binding PreviousQuestion}" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Height="54" Width="180"/>
@@ -49,5 +50,12 @@
         <Label Content="{Binding QuestionNumber, Mode=OneWay}" HorizontalAlignment="Left" Margin="110,0,0,0" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" Grid.ColumnSpan="2" Height="42" Width="50"/>
         <Label Grid.Column="1" Content="{Binding TimerValue, Mode=OneWay}" HorizontalAlignment="Left" Margin="250,29,0,0" VerticalAlignment="Top"/>
         <Label Content="{Binding PointsNumber, Mode=OneWay}" HorizontalAlignment="Left" Margin="50,70,0,0" VerticalAlignment="Top"/>
+        <ListBox Grid.Column="1" ItemsSource="{Binding QuestList3}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Tresc}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>

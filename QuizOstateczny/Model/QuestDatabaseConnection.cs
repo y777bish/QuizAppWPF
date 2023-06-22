@@ -82,6 +82,28 @@ public class QuestDatabaseConnection
         return questList;
     }
 
+    public List<Quest> GetQuestList3(int idQuiz)
+    {
+        string query = "SELECT * FROM quests WHERE quiz = ?";
+        List<QuestBaza> questBazaList = connection.Query<QuestBaza>(query, idQuiz);
+        List<Quest> questList = new List<Quest>();
+        foreach (QuestBaza questBaza in questBazaList)
+        {
+            Quest quest = new Quest();
+            quest.Id_quest = questBaza.id_quest;
+            quest.Tresc = questBaza.tresc;
+            quest.Odp_1 = questBaza.odp1;
+            quest.Odp_2 = questBaza.odp2;
+            quest.Odp_3 = questBaza.odp3;
+            quest.Odp_4 = questBaza.odp4;
+            quest.Poprawna_odp = questBaza.poprawna_odp;
+            quest.Quiz = questBaza.quiz;
+
+            questList.Add(quest);
+        }
+        return questList;
+    }
+
     public void AktualizujQuiz(int  idQuiz, string newName, int newTime)
     {
         string query = $"UPDATE quizy SET nazwa = '{newName}', czas = {newTime} WHERE id_test = {idQuiz}";
@@ -92,6 +114,23 @@ public class QuestDatabaseConnection
     {
         string query = $"UPDATE quests SET tresc = '{newTresc}', odp1 = '{newOdp1}', odp2 = '{newOdp2}', odp3 = '{newOdp3}', odp4 = '{newOdp4}', poprawna_odp = '{poprawnaOdp}' WHERE id_quest = {idQuest}";
         connection.Execute(query);
+    }
+
+    public Quiz FindQuiz(int idQuiz)
+    {
+        string query = "SELECT * FROM quizy WHERE id_test = ?";
+        List<QuizBaza> quizList = connection.Query<QuizBaza>(query, idQuiz);
+        ObservableCollection<Quiz> quizList2 = new ObservableCollection<Quiz>();
+        foreach (QuizBaza quizBaza in quizList)
+        {
+            Quiz quiz = new Quiz();
+            quiz.Id = quizBaza.id_test;
+            quiz.Name = quizBaza.nazwa;
+            quiz.Czas = quizBaza.czas;
+
+            quizList2.Add(quiz);
+        }
+        return quizList2[0];
     }
 
     public void Exterminatus()

@@ -19,13 +19,14 @@ namespace QuizOstateczny.ViewModel
         /*public static readonly Model.QuestDatabaseConnection model = new Model.QuestDatabaseConnection();*/
 
         // Nie jestem tego pewien, możliwe, że coś podobnego zrobił Łukasz
-        private static int selectedQuiz = 0;
-        public static int SelectedQuiz
+        private Quiz selectedQuiz2;
+        public Quiz SelectedQuiz2
         {
-            get => selectedQuiz;
+            get => selectedQuiz2;
             set
             {
-                selectedQuiz = value;
+                selectedQuiz2 = value;
+                OnPropertyChanged(nameof(SelectedQuiz2));
             }
         }
 
@@ -51,14 +52,14 @@ namespace QuizOstateczny.ViewModel
             }
         }
 
-        private ObservableCollection<int> listaLiczb;
-        public ObservableCollection<int> ListaLiczb
+        private ObservableCollection<int> listaLiczb2;
+        public ObservableCollection<int> ListaLiczb2
         {
-            get { return listaLiczb; }
+            get { return listaLiczb2; }
             set
             {
-                listaLiczb = value;
-                OnPropertyChanged(nameof(ListaLiczb));
+                listaLiczb2 = value;
+                OnPropertyChanged(nameof(ListaLiczb2));
             }
         }
 
@@ -88,17 +89,17 @@ namespace QuizOstateczny.ViewModel
             }
         }
 
-        public QuestDatabaseConnection dbConnection { get; set; }
+        public QuestDatabaseConnection dbConnection2 { get; set; }
 
         public QuizSolvingViewModel()
         {
             QuestList2 = new ObservableCollection<Quest>();
             QuizList2 = new ObservableCollection<Quiz>();
             string dbPath = "C:\\Users\\barti\\Downloads\\db_quest.db";
-            dbConnection = new QuestDatabaseConnection(dbPath);
-            ObservableCollection<Quiz> updatedQuizList = dbConnection.GetQuizList();
+            dbConnection2 = new QuestDatabaseConnection(dbPath);
+            ObservableCollection<Quiz> updatedQuizList = dbConnection2.GetQuizList();
             QuizList2 = updatedQuizList;
-            ListaLiczb = new ObservableCollection<int> { 1, 2, 3, 4 };
+            ListaLiczb2 = new ObservableCollection<int> { 1, 2, 3, 4 };
             /*SelectedNumber = 1;*/
         }
 
@@ -117,14 +118,30 @@ namespace QuizOstateczny.ViewModel
                             {
                                 QuizListVisibility = Visibility.Collapsed;
                                 StartQuizVisibility = Visibility.Collapsed;
+                                WybierzQuiz();
                                 frame.Navigate(new SolveThis());
                             }
                         }
                         ,
-                        (o) => selectedQuiz >-1
+                        (o) => selectedQuiz2 != null
                         );
                 return zacznijQuiz;
             }
+        }
+
+        public event EventHandler<QuizSelectedEventArgs> QuizSelected;
+
+        private void OnQuizSelected()
+        {
+            QuizSelected?.Invoke(this, new QuizSelectedEventArgs(selectedQuiz2.Id));
+        }
+
+        public void WybierzQuiz()
+        {
+            // Logika wyboru quizu...
+
+            // Publikowanie zdarzenia
+            OnQuizSelected();
         }
     }
 }

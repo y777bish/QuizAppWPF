@@ -16,19 +16,8 @@ namespace QuizOstateczny.ViewModel
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private ObservableCollection<Quest> questionContent;
-        public ObservableCollection<Quest> QuestionContent
-        {
-            get { return questionContent; }
-            set
-            {
-                questionContent = value;
-                OnPropertyChanged(nameof(QuestionContent));
-            }
-        }
-
-        private ObservableCollection<Quest> questList3;
-        public ObservableCollection<Quest> QuestList3
+        private List<Quest> questList3;
+        public List<Quest> QuestList3
         {
             get { return questList3; }
             set
@@ -43,160 +32,134 @@ namespace QuizOstateczny.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(v));
         }
 
-        public QuestDatabaseConnection dbConnection { get; set; }
+        public QuestDatabaseConnection dbConnection3 { get; set; }
+
+        Quiz quiz = new Quiz();
+
+        public event EventHandler<QuizSelectedEventArgs> QuizSelected;
 
         public SolveThisViewModel()
         {
-            QuestionContent = new ObservableCollection<Quest>();
+            
+            QuizSolvingViewModel quizSolvingViewModel = new QuizSolvingViewModel();
+            QuizSelected += QuizSolvingViewModel_QuizSelected;
+
+            questList3 = new List<Quest>();
+            
             string dbPath = "C:\\Users\\barti\\Downloads\\db_quest.db";
-            dbConnection = new QuestDatabaseConnection(dbPath);
-            ObservableCollection<Quest> updatedQuestList = dbConnection.GetQuestList(1);
-            /*QuizList2 = updatedQuizList;
-            ListaLiczb = new ObservableCollection<int> { 1, 2, 3, 4 };*/
-            /*SelectedNumber = 1;*/
+            dbConnection3 = new QuestDatabaseConnection(dbPath);
+            //QuestList3 = dbConnection3.GetQuestList3(selectedQuiz3.Id);
+            //Sync(1);
         }
-
-        private int quizTime2 = 180;
-        public int QuizTime2
+        public void Sync(int nrQuest)
         {
-            get => quizTime2;
-            set
+            if (nrQuest >= 0 && nrQuest < questList3.Count)
             {
-                quizTime2 = value;
-                OnPropertyChanged(nameof(QuizTime2));
+                Pytanie_3 = questList3[nrQuest].Tresc;
             }
-        }
-
-        /*private string quizName2 = "";
-        public string QuizName2
-        {
-            get => quizName2;
-            set
+            else
             {
-                quizName2 = value;
-                OnPropertyChanged($"{nameof(QuizName2)}");
-            }
-        }*/
-
-        private Quiz selectedQuiz2;
-        public Quiz SelectedQuiz2
-        {
-            get => selectedQuiz2;
-            set
-            {
-                selectedQuiz2 = value;
-                OnPropertyChanged(nameof(SelectedQuiz2));
-                if (selectedQuiz2 != null)
-                {
-                    ObservableCollection<Quest> updatedQuestList = dbConnection.GetQuestList(selectedQuiz2.Id);
-                    QuestList3 = updatedQuestList;
-                    /*QuizName2 = SelectedQuiz2.Name;*/
-                    QuizTime2 = SelectedQuiz2.Czas;
-                }
-                else
-                {
-                    ObservableCollection<Quest> updatedQuestList = dbConnection.GetQuestList(-1);
-                    QuestList3 = updatedQuestList;
-                    /*QuizName2 = "";*/
-                    QuizTime2 = 180;
-                }
-
+                Pytanie_3 = string.Empty;
             }
         }
 
-        private Quest selectedQuest2;
-        public Quest SelectedQuest2
+        private int quizTime3 = 180;
+        public int QuizTime3
         {
-            get => selectedQuest2;
+            get => quizTime3;
             set
             {
-                selectedQuest2 = value;
-                OnPropertyChanged(nameof(SelectedQuest2));
-                if (selectedQuest2 != null)
-                {
-                    Pytanie_2 = Szyfrowanko.Odszyfrowanie(SelectedQuest2.Tresc, "modelmvvm");
-                    Odp1_2 = Szyfrowanko.Odszyfrowanie(SelectedQuest2.Odp_1, "modelmvvm");
-                    Odp2_2 = Szyfrowanko.Odszyfrowanie(SelectedQuest2.Odp_2, "modelmvvm");
-                    Odp3_2 = Szyfrowanko.Odszyfrowanie(SelectedQuest2.Odp_3, "modelmvvm");
-                    Odp4_2 = Szyfrowanko.Odszyfrowanie(SelectedQuest2.Odp_4, "modelmvvm");
-                    SelectedNumber2 = Szyfrowanko.DeszyfrNumer(selectedQuest2.Poprawna_odp);
-                }
-                else
-                {
-                    Pytanie_2 = "";
-                    Odp1_2 = "";
-                    Odp2_2 = "";
-                    Odp3_2 = "";
-                    Odp4_2 = "";
-                    SelectedNumber2 = 1;
-                }
+                quizTime3 = value;
+                OnPropertyChanged(nameof(QuizTime3));
             }
         }
 
-        private int selectedNumber2;
-        public int SelectedNumber2
+        private Quiz selectedQuiz3;
+        public Quiz SelectedQuiz3
         {
-            get { return selectedNumber2; }
+            get => selectedQuiz3;
             set
             {
-                selectedNumber2 = value;
-                OnPropertyChanged(nameof(SelectedNumber2));
+                selectedQuiz3 = value;
+                OnPropertyChanged(nameof(SelectedQuiz3));
             }
         }
 
-        private string pytanie_2 = "";
-        public string Pytanie_2
+        private int selectedNumber3;
+        public int SelectedNumber3
         {
-            get => pytanie_2;
+            get { return selectedNumber3; }
             set
             {
-                pytanie_2 = value;
-                OnPropertyChanged(nameof(Pytanie_2));
+                selectedNumber3 = value;
+                OnPropertyChanged(nameof(SelectedNumber3));
             }
         }
 
-        private string odp1_2 = "";
-        public string Odp1_2
+        private string pytanie_3 = "";
+        public string Pytanie_3
         {
-            get => odp1_2;
+            get => pytanie_3;
             set
             {
-                odp1_2 = value;
-                OnPropertyChanged(nameof(Odp1_2));
+                pytanie_3 = value;
+                OnPropertyChanged(nameof(Pytanie_3));
             }
         }
 
-        private string odp2_2 = "";
-        public string Odp2_2
+        private string odp1_3 = "";
+        public string Odp1_3
         {
-            get => odp2_2;
+            get => odp1_3;
             set
             {
-                odp2_2 = value;
-                OnPropertyChanged(nameof(Odp2_2));
+                odp1_3 = value;
+                OnPropertyChanged(nameof(Odp1_3));
             }
         }
 
-        private string odp3_2 = "";
-        public string Odp3_2
+        private string odp2_3 = "";
+        public string Odp2_3
         {
-            get => odp3_2;
+            get => odp2_3;
             set
             {
-                odp3_2 = value;
-                OnPropertyChanged(nameof(Odp3_2));
+                odp2_3 = value;
+                OnPropertyChanged(nameof(Odp2_3));
             }
         }
 
-        private string odp4_2 = "";
-        public string Odp4_2
+        private string odp3_3 = "";
+        public string Odp3_3
         {
-            get => odp4_2;
+            get => odp3_3;
             set
             {
-                odp4_2 = value;
-                OnPropertyChanged(nameof(Odp4_2));
+                odp3_3 = value;
+                OnPropertyChanged(nameof(Odp3_3));
             }
+        }
+
+        private string odp4_3 = "";
+        public string Odp4_3
+        {
+            get => odp4_3;
+            set
+            {
+                odp4_3 = value;
+                OnPropertyChanged(nameof(Odp4_3));
+            }
+        }
+
+        private void QuizSolvingViewModel_QuizSelected(object sender, QuizSelectedEventArgs e)
+        {
+            // Otrzymanie przekazanej wartości wybranyQuiz
+            Quiz wybranyQuiz = dbConnection3.FindQuiz(e.WybranyQuiz);
+
+            SelectedQuiz3 = wybranyQuiz;
+            Pytanie_3 = "ggg";
+
+            QuizSelected?.Invoke(this, e);
         }
     }
 }
