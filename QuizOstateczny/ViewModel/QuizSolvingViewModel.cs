@@ -29,14 +29,14 @@ namespace QuizOstateczny.ViewModel
             }
         }
 
-        private ObservableCollection<Quest> questList;
-        public ObservableCollection<Quest> QuestList
+        private ObservableCollection<Quest> questList2;
+        public ObservableCollection<Quest> QuestList2
         {
-            get { return questList; }
+            get { return questList2; }
             set
             {
-                questList = value;
-                OnPropertyChanged(nameof(QuestList));
+                questList2 = value;
+                OnPropertyChanged(nameof(QuestList2));
             }
         }
 
@@ -92,7 +92,7 @@ namespace QuizOstateczny.ViewModel
 
         public QuizSolvingViewModel()
         {
-            QuestList = new ObservableCollection<Quest>();
+            QuestList2 = new ObservableCollection<Quest>();
             QuizList2 = new ObservableCollection<Quiz>();
             string dbPath = "C:\\Users\\barti\\Downloads\\db_quest.db";
             dbConnection = new QuestDatabaseConnection(dbPath);
