@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace QuizOstateczny.View
 {
     /// <summary>
-    /// Logika interakcji dla klasy RozwiazywanieQuizu.xaml
+    /// Logika interakcji dla klasy SolveThis.xaml
     /// </summary>
-    public partial class RozwiazywanieQuizu : Page
+    public partial class SolveThis : Page
     {
-        public RozwiazywanieQuizu()
+        public SolveThis()
         {
             InitializeComponent();
         }

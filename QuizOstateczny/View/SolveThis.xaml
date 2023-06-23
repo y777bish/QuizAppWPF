@@ -1,0 +1,52 @@
+﻿<Page x:Class="QuizOstateczny.View.SolveThis"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:QuizOstateczny.View"
+      xmlns:vm="clr-namespace:QuizOstateczny.ViewModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SolveThis">
+
+    <Page.DataContext>
+        <vm:SolveThisViewModel x:Name="solveThisViewModel"/>
+    </Page.DataContext>
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="{Binding NrPytania2}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="24" FontWeight="Bold" Height="42" Width="180"/>
+        <Label Content="{Binding Pytanie_3, Mode=OneWay}" FontSize="24" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <StackPanel Grid.Row="2">
+            <CheckBox Width="360" Height="44" Command="{Binding Check}" Margin="30,10,0,0" VerticalAlignment="Top" IsChecked="{Binding Odp1_3.IsChoosen, Mode=TwoWay}">
+                <TextBlock Text="{Binding Odp1_3, Mode=OneWay}" TextWrapping="Wrap"/>
+            </CheckBox>
+            <CheckBox Width="360" Height="44" Command="{Binding Check}" Margin="30,10,0,0" VerticalAlignment="Bottom" IsChecked="{Binding Odp3_3.IsChoosen, Mode=TwoWay}">
+                <TextBlock Text="{Binding Odp3_3, Mode=OneWay}" TextWrapping="Wrap"/>
+            </CheckBox>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="2">
+            <CheckBox Width="360" Command="{Binding Check}" Height="44" Margin="30,10,0,0" VerticalAlignment="Top" IsChecked="{Binding Odp2_3.IsChoosen, Mode=TwoWay}">
+                <TextBlock Text="{Binding Odp2_3, Mode=OneWay}" TextWrapping="Wrap"/>
+            </CheckBox>
+            <CheckBox Width="360" Command="{Binding Check}" Height="44" Margin="30,10,0,0" VerticalAlignment="Bottom" IsChecked="{Binding Odp4_3.IsChoosen, Mode=TwoWay}">
+                <TextBlock Text="{Binding Odp4_3, Mode=OneWay}" TextWrapping="Wrap"/>
+            </CheckBox>
+        </StackPanel>
+        <Button Content="Poprzednie pytanie" Command="{Binding PreviousQuestion}" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Height="54" Width="180"/>
+        <Button Content="{Binding PrzyciskDalej}" Command="{Binding NextQuestion}" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Height="54" Width="180"/>
+        <Frame Name="QuizFrame" Grid.RowSpan="4" Grid.ColumnSpan="2"/>
+        <Label Grid.Column="1" Content="{Binding QuizTime3, Mode=OneWay}" HorizontalAlignment="Left" Margin="243,10,0,0" VerticalAlignment="Top" Height="71" Width="124" FontSize="48"/>
+        <Label Content="{Binding PointsNumber, Mode=OneWay}" HorizontalAlignment="Left" Margin="50,70,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Page>
