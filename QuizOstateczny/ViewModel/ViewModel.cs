@@ -1,9 +1,6 @@
 using QuizOstateczny.Model;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
 using System.Windows.Input;
 
 namespace QuizOstateczny.ViewModel
@@ -56,7 +53,8 @@ namespace QuizOstateczny.ViewModel
         {
             QuestList = new ObservableCollection<Quest>();
             QuizList = new ObservableCollection<Quiz>();
-            string dbPath = "C:\\Users\\barti\\Downloads\\db_quest.db";
+            //string dbPath = "C:\\Users\\barti\\Downloads\\db_quest.db";
+            string dbPath = "C:\\Users\\lukas\\OneDrive\\Desktop\\db_quest.db";
             dbConnection = new QuestDatabaseConnection(dbPath);
             ObservableCollection<Quiz> updatedQuizList = dbConnection.GetQuizList();
             QuizList = updatedQuizList;

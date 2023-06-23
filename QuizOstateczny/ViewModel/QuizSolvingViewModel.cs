@@ -1,12 +1,8 @@
 ﻿using QuizOstateczny.Model;
 using QuizOstateczny.View;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -95,7 +91,8 @@ namespace QuizOstateczny.ViewModel
         {
             QuestList2 = new ObservableCollection<Quest>();
             QuizList2 = new ObservableCollection<Quiz>();
-            string dbPath = "C:\\Users\\barti\\Downloads\\db_quest.db";
+            //string dbPath = "C:\\Users\\barti\\Downloads\\db_quest.db";
+            string dbPath = "C:\\Users\\lukas\\OneDrive\\Desktop\\db_quest.db";
             dbConnection2 = new QuestDatabaseConnection(dbPath);
             ObservableCollection<Quiz> updatedQuizList = dbConnection2.GetQuizList();
             QuizList2 = updatedQuizList;
@@ -118,7 +115,7 @@ namespace QuizOstateczny.ViewModel
                             {
                                 QuizListVisibility = Visibility.Collapsed;
                                 StartQuizVisibility = Visibility.Collapsed;
-                                WybierzQuiz();
+                                FileService.SaveToFile(selectedQuiz2.Id);
                                 frame.Navigate(new SolveThis());
                             }
                         }
@@ -127,21 +124,6 @@ namespace QuizOstateczny.ViewModel
                         );
                 return zacznijQuiz;
             }
-        }
-
-        public event EventHandler<QuizSelectedEventArgs> QuizSelected;
-
-        private void OnQuizSelected()
-        {
-            QuizSelected?.Invoke(this, new QuizSelectedEventArgs(selectedQuiz2.Id));
-        }
-
-        public void WybierzQuiz()
-        {
-            // Logika wyboru quizu...
-
-            // Publikowanie zdarzenia
-            OnQuizSelected();
         }
     }
 }
