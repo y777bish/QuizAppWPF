@@ -15,14 +15,14 @@
     
 
     <Grid>
-        <ListBox ItemsSource="{Binding QuizList2}" Visibility="{Binding QuizListVisibility}" SelectedItem="{Binding SelectedQuiz2}" Margin="198,46,198,180">
+        <ListBox ItemsSource="{Binding QuizList2}" Visibility="{Binding QuizListVisibility}" SelectedItem="{Binding SelectedQuiz2}" Margin="235,46,235,180">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Visibility="{Binding StartQuizVisibility}" Command="{Binding ZacznijQuiz}" Content="Start" HorizontalAlignment="Center" Margin="0,302,0,0" VerticalAlignment="Top" Height="87" Width="330"/>
+        <Button Visibility="{Binding StartQuizVisibility}" Command="{Binding ZacznijQuiz}" Content="Start" HorizontalAlignment="Center" Margin="0,302,0,0" VerticalAlignment="Top" Height="87" Width="330" FontSize="36"/>
         <Frame Name="MainFrame" Grid.RowSpan="2"/>
 
     </Grid>

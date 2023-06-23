@@ -1,10 +1,12 @@
 ﻿using QuizOstateczny.Model;
+using QuizOstateczny.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
+using System.Windows;
 
 namespace QuizOstateczny.ViewModel
 {
@@ -20,6 +22,17 @@ namespace QuizOstateczny.ViewModel
             {
                 questList3 = value;
                 OnPropertyChanged(nameof(QuestList3));
+            }
+        }
+
+        private List<Answer> answerList;
+        public List<Answer> AnswerList
+        {
+            get => answerList;
+            set
+            {
+                answerList = value;
+                OnPropertyChanged(nameof(AnswerList));
             }
         }
 
@@ -54,13 +67,26 @@ namespace QuizOstateczny.ViewModel
             string dbPath = "C:\\Users\\lukas\\OneDrive\\Desktop\\db_quest.db";
             dbConnection3 = new QuestDatabaseConnection(dbPath);
             QuestList3 = dbConnection3.GetQuestList3(FileService.ReadQuizIDFromFile());
-            Sync(NrPytania - 1);
             QuizTime3 = dbConnection3.FindQuiz(FileService.ReadQuizIDFromFile()).Czas;
 
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
             timer.Start();
+
+            AnswerList = new List<Answer>();
+            foreach (Quest quest in QuestList3)
+            {
+                Answer answer = new Answer();
+                answer.Answer1 = false;
+                answer.Answer2 = false;
+                answer.Answer3 = false;
+                answer.Answer4 = false;
+
+                AnswerList.Add(answer);
+            }
+
+            Sync(NrPytania - 1);
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -69,6 +95,7 @@ namespace QuizOstateczny.ViewModel
             if (quizTime3 <= 0)
             {
                 timer.Stop();
+                ZakonczenieQuizu();
             }
         }
 
@@ -82,6 +109,11 @@ namespace QuizOstateczny.ViewModel
                 Odp3_3 = Szyfrowanko.Odszyfrowanie(questList3[nrQuest].Odp_3, "modelmvvm");
                 Odp4_3 = Szyfrowanko.Odszyfrowanie(questList3[nrQuest].Odp_4, "modelmvvm");
                 NrPytania2 = String.Concat("Pytanie nr ", nrQuest + 1);
+
+                Ans1 = AnswerList[nrQuest].Answer1;
+                Ans2 = AnswerList[nrQuest].Answer2;
+                Ans3 = AnswerList[nrQuest].Answer3;
+                Ans4 = AnswerList[nrQuest].Answer4;
             }
             else
             {
@@ -90,6 +122,60 @@ namespace QuizOstateczny.ViewModel
                 Odp2_3 = string.Empty;
                 Odp3_3 = string.Empty;
                 Odp4_3= string.Empty;
+                Ans1 = false;
+                Ans2 = false;
+                Ans3 = false;
+                Ans4 = false;
+            }
+        }
+
+        public void AktualizacjaOdp(int pytanie, int ktory)
+        {
+            AnswerList[pytanie - 1].Answer1 = false;
+            AnswerList[pytanie - 1].Answer2 = false;
+            AnswerList[pytanie - 1].Answer3 = false;
+            AnswerList[pytanie - 1].Answer4 = false;
+
+            switch (ktory)
+            {
+                case 1:
+                    AnswerList[pytanie - 1].Answer1 = true;
+                    break;
+                case 2:
+                    AnswerList[pytanie - 1].Answer2 = true;
+                    break;
+                case 3:
+                    AnswerList[pytanie - 1].Answer3 = true;
+                    break;
+                case 4:
+                    AnswerList[pytanie - 1].Answer4 = true;
+                    break;
+            }
+        }
+
+        public void ZakonczenieQuizu()
+        {
+            int iloscPkt = 0;
+
+            for (int i = 0; i < QuestList3.Count; i++)
+            {
+                if (AnswerList[i].Answer1)
+                    if (Szyfrowanko.DeszyfrNumer(QuestList3[i].Poprawna_odp) == 1) iloscPkt += 1;
+                if (AnswerList[i].Answer2)
+                    if (Szyfrowanko.DeszyfrNumer(QuestList3[i].Poprawna_odp) == 2) iloscPkt += 1;
+                if (AnswerList[i].Answer3)
+                    if (Szyfrowanko.DeszyfrNumer(QuestList3[i].Poprawna_odp) == 3) iloscPkt += 1;
+                if (AnswerList[i].Answer4)
+                    if (Szyfrowanko.DeszyfrNumer(QuestList3[i].Poprawna_odp) == 4) iloscPkt += 1;
+            }
+
+            FileService.SaveToFile(iloscPkt);
+
+            Frame frame = Application.Current.MainWindow.FindName("QuizFrame") as Frame;
+
+            if (frame != null)
+            {
+                frame.Navigate(new SolveThis());
             }
         }
 
@@ -194,6 +280,93 @@ namespace QuizOstateczny.ViewModel
             }
         }
 
+        private bool ans1;
+        public bool Ans1
+        {
+            get { return ans1; } set
+            {
+                ans1 = value;
+                if (ans1)
+                {
+                    Ans2 = false;
+                    Ans3 = false;
+                    Ans4 = false;
+                    AktualizacjaOdp(NrPytania, 1);
+                }
+                else
+                {
+                    AnswerList[NrPytania - 1].Answer1 = false;
+                }
+                OnPropertyChanged(nameof(Ans1));
+            }
+        }
+
+        private bool ans2;
+        public bool Ans2
+        {
+            get { return ans2; }
+            set
+            {
+                ans2 = value;
+                if (ans2)
+                {
+                    Ans1 = false;
+                    Ans3 = false;
+                    Ans4 = false;
+                    AktualizacjaOdp(NrPytania, 2);
+                }
+                else
+                {
+                    AnswerList[NrPytania - 1].Answer2 = false;
+                }
+                OnPropertyChanged(nameof(Ans2));
+            }
+        }
+
+        private bool ans3;
+        public bool Ans3
+        {
+            get { return ans3; }
+            set
+            {
+                ans3 = value;
+                if (ans3)
+                {
+                    Ans2 = false;
+                    Ans1 = false;
+                    Ans4 = false;
+                    AktualizacjaOdp(NrPytania, 3);
+                }
+                else
+                {
+                    AnswerList[NrPytania - 1].Answer3 = false;
+                }
+                OnPropertyChanged(nameof(Ans3));
+            }
+        }
+
+        private bool ans4;
+        public bool Ans4
+        {
+            get { return ans4; }
+            set
+            {
+                ans4 = value;
+                if (ans4)
+                {
+                    Ans2 = false;
+                    Ans3 = false;
+                    Ans1 = false;
+                    AktualizacjaOdp(NrPytania, 4);
+                }
+                else
+                {
+                    AnswerList[NrPytania - 1].Answer4 = false;
+                }
+                OnPropertyChanged(nameof(Ans4));
+            }
+        }
+
         private ICommand nextQuestion;
         public ICommand NextQuestion
         {
@@ -204,6 +377,10 @@ namespace QuizOstateczny.ViewModel
                     nextQuestion = new RelayCommand(
                         (o) =>
                         {
+                            if (NrPytania == questList3.Count)
+                            {
+                                ZakonczenieQuizu();
+                            }
                             NrPytania += 1;
                             if (NrPytania <= questList3.Count)
                             {
@@ -212,10 +389,6 @@ namespace QuizOstateczny.ViewModel
                                 {
                                     PrzyciskDalej = "Zakończ";
                                 }
-                            }
-                            else
-                            {
-
                             }
                         },
                         (o) => true);

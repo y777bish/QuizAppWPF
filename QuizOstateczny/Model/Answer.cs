@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QuizOstateczny.Model
+﻿namespace QuizOstateczny.Model
 {
-    internal class Answer
+    public class Answer
     {
-        public int Id { get; set; }
-        public bool IsCorrect { get; set; } = false;
-        public bool IsChoosen { get; set; } = false;
+        public bool Answer1 { get; set;}
+        public bool Answer2 { get; set;}
+        public bool Answer3 { get; set;}
+        public bool Answer4 { get; set;}
     }
 }
