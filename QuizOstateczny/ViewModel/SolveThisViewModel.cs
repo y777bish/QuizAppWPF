@@ -25,6 +25,7 @@ namespace QuizOstateczny.ViewModel
             }
         }
 
+
         private List<Answer> answerList;
         public List<Answer> AnswerList
         {
@@ -169,13 +170,14 @@ namespace QuizOstateczny.ViewModel
                     if (Szyfrowanko.DeszyfrNumer(QuestList3[i].Poprawna_odp) == 4) iloscPkt += 1;
             }
 
-            FileService.SaveToFile(iloscPkt);
+            FileService.SavePtsToFile(iloscPkt);
 
-            Frame frame = Application.Current.MainWindow.FindName("QuizFrame") as Frame;
+            Frame frame = Application.Current.MainWindow.FindName("MainFrame") as Frame;
 
             if (frame != null)
             {
-                frame.Navigate(new SolveThis());
+                frame.Navigate(new QuizWynik());
+                
             }
         }
 

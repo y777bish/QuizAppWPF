@@ -23,7 +23,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Button Visibility="{Binding StartQuizVisibility}" Command="{Binding ZacznijQuiz}" Content="Start" HorizontalAlignment="Center" Margin="0,302,0,0" VerticalAlignment="Top" Height="87" Width="330" FontSize="36"/>
-        <Frame Name="MainFrame" Grid.RowSpan="2"/>
+        <Frame Name="MainFrame" Grid.RowSpan="2" NavigationUIVisibility="Hidden"/>
 
     </Grid>
 </Window>

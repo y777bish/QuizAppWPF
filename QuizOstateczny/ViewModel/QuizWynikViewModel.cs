@@ -1,15 +1,11 @@
 ﻿using QuizOstateczny.Model;
 using QuizOstateczny.View;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows;
 
 namespace QuizOstateczny.ViewModel
 {
@@ -41,11 +37,15 @@ namespace QuizOstateczny.ViewModel
             string dbPath = "C:\\Users\\lukas\\OneDrive\\Desktop\\db_quest.db";
             dbConnection4 = new QuestDatabaseConnection(dbPath);
 
+            int QuizID = FileService.ReadQuizIDFromFile();
+            List<Quest> list = new List<Quest>();
+            list = dbConnection4.GetQuestList3(QuizID);
+
             ObservableCollection<Quiz> updatedQuizList = dbConnection4.GetQuizList();
             QuizList4 = updatedQuizList;
 
-            int Pts = FileService.ReadQuizIDFromFile();
-            TotalPts = Pts + "/" + QuizList4.Count;
+            int Pts = FileService.ReadPtsFromFile();
+            TotalPts = Pts + "/" + list.Count;
         }
 
         private Quiz selectedQuiz4;
