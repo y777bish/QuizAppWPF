@@ -20,6 +20,15 @@
     </Page.Resources>
     
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <Frame Name="SummarizeFrame"/>
+            <Label Content="Twój wynik to:" HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Top" FontSize="20"/>
+        </StackPanel>
+        <Button Content="Zakończ" Command="{Binding CloseWindow}" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Height="75" Width="230"/>
     </Grid>
 </Page>
