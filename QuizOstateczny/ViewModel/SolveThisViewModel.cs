@@ -1,7 +1,9 @@
 ﻿using QuizOstateczny.Model;
+using QuizOstateczny.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
@@ -20,6 +22,17 @@ namespace QuizOstateczny.ViewModel
             {
                 questList3 = value;
                 OnPropertyChanged(nameof(QuestList3));
+            }
+        }
+
+        private Visibility endQuizVisibility = Visibility.Collapsed;
+        public Visibility EndQuizVisibility
+        {
+            get { return endQuizVisibility; }
+            set
+            {
+                endQuizVisibility = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EndQuizVisibility)));
             }
         }
 
@@ -50,8 +63,8 @@ namespace QuizOstateczny.ViewModel
 
             questList3 = new List<Quest>();
             
-            //string dbPath = "C:\\Users\\barti\\Downloads\\db_quest.db";
-            string dbPath = "C:\\Users\\lukas\\OneDrive\\Desktop\\db_quest.db";
+            string dbPath = "C:\\Users\\barti\\Downloads\\db_quest.db";
+            //string dbPath = "C:\\Users\\lukas\\OneDrive\\Desktop\\db_quest.db";
             dbConnection3 = new QuestDatabaseConnection(dbPath);
             QuestList3 = dbConnection3.GetQuestList3(FileService.ReadQuizIDFromFile());
             Sync(NrPytania - 1);
@@ -244,6 +257,33 @@ namespace QuizOstateczny.ViewModel
                         (o) => NrPytania != 1);
                 }
                 return previousQuestion;
+            }
+        }
+
+        private ICommand endQuiz;
+        public ICommand EndQuiz
+        {
+            get
+            {
+                if (endQuiz == null)
+                    endQuiz = new RelayCommand(
+
+                     (o) =>
+                     {
+                         Frame frame = Application.Current.MainWindow.FindName("MainFrame") as Frame;
+
+
+                         if (frame != null)
+                         {
+                             frame.NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Hidden;
+                             EndQuizVisibility = Visibility.Collapsed;
+                             frame.Navigate(new Summarize());
+                         }
+                     }
+                    ,
+                    (o) => true
+                    );
+                return endQuiz;
             }
         }
     }

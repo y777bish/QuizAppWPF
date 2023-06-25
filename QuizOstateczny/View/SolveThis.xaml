@@ -48,5 +48,6 @@
         <Frame Name="QuizFrame" Grid.RowSpan="4" Grid.ColumnSpan="2"/>
         <Label Grid.Column="1" Content="{Binding QuizTime3, Mode=OneWay}" HorizontalAlignment="Left" Margin="243,10,0,0" VerticalAlignment="Top" Height="71" Width="124" FontSize="48"/>
         <Label Content="{Binding PointsNumber, Mode=OneWay}" HorizontalAlignment="Left" Margin="50,70,0,0" VerticalAlignment="Top"/>
+        <Button Grid.Column="1" Visibility="{Binding EndQuizVisibility}" Command="{Binding endQuiz}" Content="Button" HorizontalAlignment="Left" Margin="10,28,0,0" VerticalAlignment="Top" Height="53"/>
     </Grid>
 </Page>

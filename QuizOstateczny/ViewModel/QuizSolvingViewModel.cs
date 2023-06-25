@@ -91,8 +91,8 @@ namespace QuizOstateczny.ViewModel
         {
             QuestList2 = new ObservableCollection<Quest>();
             QuizList2 = new ObservableCollection<Quiz>();
-            //string dbPath = "C:\\Users\\barti\\Downloads\\db_quest.db";
-            string dbPath = "C:\\Users\\lukas\\OneDrive\\Desktop\\db_quest.db";
+            string dbPath = "C:\\Users\\barti\\Downloads\\db_quest.db";
+            //string dbPath = "C:\\Users\\lukas\\OneDrive\\Desktop\\db_quest.db";
             dbConnection2 = new QuestDatabaseConnection(dbPath);
             ObservableCollection<Quiz> updatedQuizList = dbConnection2.GetQuizList();
             QuizList2 = updatedQuizList;

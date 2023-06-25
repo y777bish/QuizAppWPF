@@ -4,7 +4,7 @@ namespace QuizOstateczny.Model
 {
     public class FileService
     {
-        private static readonly string filePath = "C:\\Users\\lukas\\OneDrive\\Desktop\\QuizID.txt";
+        private static readonly string filePath = "C:\\Users\\barti\\Downloads\\QuizID.txt";
 
         public static void SaveToFile(int quizID)
         {
