@@ -64,8 +64,8 @@ namespace QuizOstateczny.ViewModel
 
             questList3 = new List<Quest>();
             
-            //string dbPath = "C:\\Users\\barti\\Downloads\\db_quest.db";
-            string dbPath = "C:\\Users\\lukas\\OneDrive\\Desktop\\db_quest.db";
+            string dbPath = "C:\\Users\\barti\\Downloads\\db_quest.db";
+            //string dbPath = "C:\\Users\\lukas\\OneDrive\\Desktop\\db_quest.db";
             dbConnection3 = new QuestDatabaseConnection(dbPath);
             QuestList3 = dbConnection3.GetQuestList3(FileService.ReadQuizIDFromFile());
             QuizTime3 = dbConnection3.FindQuiz(FileService.ReadQuizIDFromFile()).Czas;
@@ -381,6 +381,7 @@ namespace QuizOstateczny.ViewModel
                         {
                             if (NrPytania == questList3.Count)
                             {
+                                timer.Stop();
                                 ZakonczenieQuizu();
                             }
                             NrPytania += 1;

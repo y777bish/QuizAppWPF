@@ -4,11 +4,11 @@ namespace QuizOstateczny.Model
 {
     public class FileService
     {
-        private static readonly string filePath = "C:\\Users\\lukas\\OneDrive\\Desktop\\QuizID.txt";
-        //private static readonly string filePath = "C:\\Users\\barti\\Downloads\\QuizID.txt";
+        //private static readonly string filePath = "C:\\Users\\lukas\\OneDrive\\Desktop\\QuizID.txt";
+        private static readonly string filePath = "C:\\Users\\barti\\Downloads\\QuizID.txt";
 
-        private static readonly string filePath2 = "C:\\Users\\lukas\\OneDrive\\Desktop\\QuizPts.txt";
-        //private static readonly string filePath2 = "C:\\Users\\barti\\Downloads\\QuizPts.txt";
+        //private static readonly string filePath2 = "C:\\Users\\lukas\\OneDrive\\Desktop\\QuizPts.txt";
+        private static readonly string filePath2 = "C:\\Users\\barti\\Downloads\\QuizPts.txt";
 
         public static void SaveToFile(int quizID)
         {

@@ -33,8 +33,8 @@ namespace QuizOstateczny.ViewModel
 
         public QuizWynikViewModel()
         {
-            //string dbPath = "C:\\Users\\barti\\Downloads\\db_quest.db";
-            string dbPath = "C:\\Users\\lukas\\OneDrive\\Desktop\\db_quest.db";
+            string dbPath = "C:\\Users\\barti\\Downloads\\db_quest.db";
+            //string dbPath = "C:\\Users\\lukas\\OneDrive\\Desktop\\db_quest.db";
             dbConnection4 = new QuestDatabaseConnection(dbPath);
 
             int QuizID = FileService.ReadQuizIDFromFile();

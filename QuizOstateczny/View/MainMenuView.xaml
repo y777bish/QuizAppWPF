@@ -7,10 +7,6 @@
         xmlns:vm="clr-namespace:QuizOstateczny.ViewModel"
         mc:Ignorable="d"
         Title="MainMenuView" Height="450" Width="800">
-    
-    <Window.DataContext>
-        <vm:MainViewModel x:Name="mainViewModel"/>
-    </Window.DataContext>
 
     <Window.DataContext>
         <vm:MainViewModel x:Name="mainViewModel"/>
